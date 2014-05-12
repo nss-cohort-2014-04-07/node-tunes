@@ -7,6 +7,11 @@ html
     link(href='/css/buttons.css', rel='stylesheet')
     link(href='/less/app.css', rel='stylesheet')
   body
+    nav
+      span: a(href='/') Home
+      span: a(href='/artists') Artists
+      span: a(href='/albums') Albums
+      span: a(href='/songs') Songs
     block content
 
     script(src='/js/vendor/jquery-2.1.1.js')

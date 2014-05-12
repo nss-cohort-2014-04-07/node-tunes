@@ -1,0 +1,13 @@
+extends ../shared/template
+
+block content
+  h1 Artists
+
+  form(method='POST', action='/artists', enctype='multipart/form-data')
+    input(type='text', name='name', autofocus=true, placeholder='Name')
+    input(type='file', name='photo')
+    button Add
+
+    #artists
+      each artist in artists
+        .artist(style='background-image: url("#{artist.photo}")')

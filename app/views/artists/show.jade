@@ -1,0 +1,11 @@
+extends ../shared/template
+
+block content
+  h1= artist.name
+  .image(style='background-image:url("#{artist.photo}")')
+
+  #playlist
+    each song in songs
+      .playlist
+        div= song.name
+        audio(src=song.file, controls=true)

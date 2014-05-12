@@ -1,0 +1,33 @@
+extends ../shared/template
+
+block content
+  h1 Songs
+
+  form(method='POST', action='/songs', enctype='multipart/form-data')
+    input(type='text', name='name', autofocus=true, placeholder='Name')
+    input(type='file', name='file')
+    input(type='text', name='genres', placeholder='Genres')
+    select(name='artistId')
+      each artist in artists
+        option(value=artist._id)= artist.name
+    select(name='albumId')
+      each album in albums
+        option(value=album._id)= album.name
+    button Add
+
+  table#songs
+    thead
+      tr
+        th Name
+        th Artist
+        th Album
+        th Genres
+        th
+    tbody
+      each song in songs
+        tr
+          td= song.name
+          td.photo(style='background-image:url("#{song.artist.photo}")'): a(href='/artists/#{song.artist._id}')
+          td.photo(style='background-image:url("#{song.album.photo}")'): a(href='/albums/#{song.album._id}')
+          td!= song.genres.map(function(g){return '<a href=/songs?genres='+g+'>'+g+'</a>'})
+          td: audio(src=song.file, controls=true)
